@@ -11,7 +11,6 @@ import 'package:flutter_styled/size_extension.dart';
 class ChatsItem extends StatelessWidget {
   const ChatsItem({
     super.key,
-    this.active = false,
     required this.chat,
     required this.onTap,
   });
@@ -20,14 +19,12 @@ class ChatsItem extends StatelessWidget {
 
   final Function() onTap;
 
-  final bool active;
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        color: active ? Color(0xFFDEDEDE) : null,
+        color: chat.active ? Color(0xFFDEDEDE) : null,
         padding: EdgeInsets.symmetric(
           horizontal: 10,
           vertical: 10,

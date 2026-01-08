@@ -17,4 +17,6 @@ class Chat {
   String? timestamp = "";
   //是否在线
   bool online = false;
+  // 被选中
+  bool active = false;
 }

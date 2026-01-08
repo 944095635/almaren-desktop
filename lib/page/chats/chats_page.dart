@@ -22,7 +22,10 @@ class ChatsPage extends GetView<ChatsLogic> {
   Widget _buildBody() {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [_buildChatList(), Spacer()],
+      children: [
+        _buildChatList(),
+        Spacer(),
+      ],
     );
   }
 
@@ -64,8 +67,12 @@ class ChatsPage extends GetView<ChatsLogic> {
               Chat chat = controller.chats[index];
               return ChatsItem(
                 chat: chat,
-                active: index == 0,
                 onTap: () {
+                  for (Chat element in controller.chats) {
+                    element.active = false;
+                  }
+                  chat.active = true;
+                  controller.update();
                   controller.onTapChat(chat);
                 },
               );

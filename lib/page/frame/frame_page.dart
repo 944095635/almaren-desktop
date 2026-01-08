@@ -5,7 +5,6 @@ import 'package:almaren_desktop/theme/dimensions.dart';
 import 'package:almaren_desktop/widgets/avatar_widget.dart';
 import 'package:almaren_desktop/widgets/online_box_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled/size_extension.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -39,22 +38,28 @@ class _FramePageState extends State<FramePage> {
   /// Body 左侧为菜单栏
   /// 右侧为内容区域
   Widget _buildBody() {
-    return Row(
+    return Stack(
+      fit: StackFit.expand,
       children: [
-        _buildLeftMenu(),
-        VerticalDivider(
-          width: 1,
+        Row(
+          children: [
+            _buildLeftMenu(),
+            VerticalDivider(width: 1),
+            Expanded(child: _buildContent()),
+          ],
         ),
-        Expanded(
-          child: Container(
-            color: Color(0xFFEDEDED),
-            child: ChatsPage(),
-          ),
+        Positioned(
+          left: 0,
+          right: 0,
+          top: 0,
+          height: 30,
+          child: WindowCaption(),
         ),
       ],
     );
   }
 
+  /// 左侧菜单
   Widget _buildLeftMenu() {
     return Container(
       width: 64,
@@ -130,6 +135,23 @@ class _FramePageState extends State<FramePage> {
               ],
             ),
           ),
+        ],
+      ),
+    );
+  }
+
+  /// 右侧内容
+  Widget _buildContent() {
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: Color(0xFFEDEDED),
+      ),
+      child: IndexedStack(
+        index: _pageIndex,
+        children: [
+          const ChatsPage(),
+          Text("Contacts"),
+          Text("Settings"),
         ],
       ),
     );
