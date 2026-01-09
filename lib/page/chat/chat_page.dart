@@ -286,7 +286,7 @@ class _ChatPageState extends State<ChatPage> {
                       onTapContent: () {
                         switch (message.kind) {
                           case MessageKind.image:
-                            ImageMessage imageMessage = message as ImageMessage;
+                            //ImageMessage imageMessage = message as ImageMessage;
                             // Get.to(
                             //   () => PreviewImagePage(),
                             //   transition: Transition.noTransition,

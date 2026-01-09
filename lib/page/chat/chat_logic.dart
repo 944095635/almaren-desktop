@@ -5,7 +5,6 @@ import 'package:almaren_desktop/models/message.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/utils/utils.dart';
 
 /// 聊天页面
 class ChatLogic extends GetxController {

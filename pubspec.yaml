@@ -50,6 +50,7 @@ dependencies:
     #path: ../flutter_styled // 本地引用方式
     git: 
        url: https://github.com/DMSkin/flutter_styled.git
+  xml: ^6.6.1
 
 dev_dependencies:
   flutter_test:
