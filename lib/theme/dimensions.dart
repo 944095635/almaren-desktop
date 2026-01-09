@@ -12,7 +12,7 @@ class Dimensions {
 
   /// 圆角值
   static const BorderRadius borderRadiusSmall = BorderRadius.all(
-    Radius.circular(8),
+    Radius.circular(5),
   );
 
   /// 消息内容边距 12.h + 15.w

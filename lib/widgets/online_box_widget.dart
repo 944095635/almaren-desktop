@@ -28,15 +28,15 @@ class OnlineBoxWidget extends StatelessWidget {
             right: 2,
             bottom: 2,
             child: Container(
-              width: 10,
-              height: 10,
+              width: 7,
+              height: 7,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 color: ThemeColors.greenColor,
                 // color: online ? ThemeColors.greenColor : ThemeColors.greyColor,
               ),
             ),
-          )
+          ),
         ],
       ),
     );

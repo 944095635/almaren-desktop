@@ -1,10 +1,12 @@
 import 'package:almaren_desktop/models/chat.dart';
+import 'package:almaren_desktop/page/chat/chat_page.dart';
 import 'package:almaren_desktop/page/chats/chats_item.dart';
 import 'package:almaren_desktop/page/chats/chats_logic.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/state_manager.dart';
 
+/// 聊天列表页面
 class ChatsPage extends GetView<ChatsLogic> {
   const ChatsPage({super.key});
 
@@ -24,15 +26,18 @@ class ChatsPage extends GetView<ChatsLogic> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         _buildChatList(),
-        Spacer(),
+        VerticalDivider(width: 1),
+        Expanded(
+          child: _buildContent(),
+        ),
       ],
     );
   }
 
+  /// 左侧聊天列表
   Widget _buildChatList() {
-    return Container(
+    return SizedBox(
       width: 240,
-      color: Color(0xFFF7F7F7),
       child: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -72,6 +77,7 @@ class ChatsPage extends GetView<ChatsLogic> {
                     element.active = false;
                   }
                   chat.active = true;
+                  controller.chat = chat;
                   controller.update();
                   controller.onTapChat(chat);
                 },
@@ -81,5 +87,13 @@ class ChatsPage extends GetView<ChatsLogic> {
         ],
       ),
     );
+  }
+
+  Widget _buildContent() {
+    if (controller.chat == null) {
+      return SizedBox.shrink();
+    }
+    Chat chat = controller.chat!;
+    return ChatPage(chat);
   }
 }

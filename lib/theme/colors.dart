@@ -20,5 +20,5 @@ class ThemeColors {
   static const Color hintColor = Color(0xFFADB5BD);
 
   /* 毛玻璃的颜色 */
-  static const Color glassColor = Color.fromARGB(200, 255, 255, 255);
+  static const Color glassColor = Color.fromARGB(140, 255, 255, 255);
 }

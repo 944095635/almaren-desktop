@@ -1,10 +1,11 @@
 import 'package:almaren_desktop/page/chats/chats_logic.dart';
 import 'package:almaren_desktop/page/chats/chats_page.dart';
-import 'package:almaren_desktop/page/frame/widget/menu_item.dart';
+import 'package:almaren_desktop/page/frame/widget/left_menu_item.dart';
 import 'package:almaren_desktop/theme/dimensions.dart';
 import 'package:almaren_desktop/widgets/avatar_widget.dart';
 import 'package:almaren_desktop/widgets/online_box_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled/size_extension.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
@@ -61,9 +62,8 @@ class _FramePageState extends State<FramePage> {
 
   /// 左侧菜单
   Widget _buildLeftMenu() {
-    return Container(
+    return SizedBox(
       width: 64,
-      color: const Color.fromRGBO(255, 255, 255, 0.95),
       child: Stack(
         fit: StackFit.expand,
         children: [
@@ -73,8 +73,6 @@ class _FramePageState extends State<FramePage> {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: Column(
-              spacing: 20,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 // Padding(
                 //   padding: const EdgeInsets.symmetric(
@@ -83,19 +81,19 @@ class _FramePageState extends State<FramePage> {
                 //   ),
                 //   child: Text("Almaren",style: TextStyle(fontSize: 10),),
                 // ),
-                Center(
-                  child: ClipRRect(
-                    borderRadius: Dimensions.borderRadiusSmall,
-                    child: OnlineBoxWidget(
-                      online: true,
-                      child: AvatarWidget(
-                        avatar: "assets/images/avatar/1.jpg",
-                      ),
+                ClipRRect(
+                  borderRadius: Dimensions.borderRadiusSmall,
+                  child: OnlineBoxWidget(
+                    online: true,
+                    child: AvatarWidget(
+                      avatar: "assets/images/avatar/1.jpg",
                     ),
                   ),
                 ),
 
-                MenuItem(
+                20.verticalSpace,
+
+                LeftMenuItem(
                   active: _pageIndex == 0,
                   text: "Chats",
                   icon: "assets/svgs/frame/frame_chat.svg",
@@ -107,7 +105,7 @@ class _FramePageState extends State<FramePage> {
                   },
                 ),
 
-                MenuItem(
+                LeftMenuItem(
                   active: _pageIndex == 1,
                   text: "Contacts",
                   icon: "assets/svgs/frame/frame_contacts.svg",
@@ -121,7 +119,7 @@ class _FramePageState extends State<FramePage> {
 
                 Spacer(),
 
-                MenuItem(
+                LeftMenuItem(
                   active: _pageIndex == 2,
                   text: "Settings",
                   icon: "assets/svgs/frame/frame_settings.svg",
@@ -150,8 +148,8 @@ class _FramePageState extends State<FramePage> {
         index: _pageIndex,
         children: [
           const ChatsPage(),
-          Text("Contacts"),
-          Text("Settings"),
+          Center(child: Text("Contacts")),
+          Center(child: Text("Settings")),
         ],
       ),
     );

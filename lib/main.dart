@@ -1,31 +1,18 @@
 import 'package:almaren_desktop/page/frame/frame_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_acrylic/window.dart';
-import 'package:flutter_acrylic/window_effect.dart';
 import 'package:get/get.dart';
 import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-
-  // await Window.initialize();
-  // //await Window.makeTitlebarTransparent();
-  // //await Window.enableFullSizeContentView();
-  // await Window.setEffect(
-  //   effect: WindowEffect.acrylic,
-  //   dark: false,
-  // );
-  // await Window.hideWindowControls();
-  // await Window.enableFullSizeContentView();
-
   await windowManager.ensureInitialized();
   WindowOptions windowOptions = WindowOptions(
     center: true,
     skipTaskbar: false,
     size: Size(1020, 760),
+    windowButtonVisibility: false,
+    backgroundColor: Colors.white,
     titleBarStyle: TitleBarStyle.hidden,
-    backgroundColor: Colors.transparent,
-    //windowButtonVisibility: false,
   );
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     await windowManager.show();
@@ -42,9 +29,12 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Almaren',
       theme: ThemeData(
-        fontFamily: "Poppins",
-        scaffoldBackgroundColor: Colors.transparent,
+        fontFamily: "Mi",
+        scaffoldBackgroundColor: Colors.white,
         colorScheme: ColorScheme.light(primary: Colors.black54),
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.transparent,
+        ),
         inputDecorationTheme: InputDecorationTheme(
           filled: true,
           fillColor: Color(0xFFEDEDED),
@@ -59,6 +49,16 @@ class MyApp extends StatelessWidget {
             borderRadius: BorderRadius.circular(12),
           ),
           isDense: true,
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: ButtonStyle(
+            backgroundColor: WidgetStatePropertyAll(Colors.black),
+            shape: WidgetStatePropertyAll(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5),
+              ),
+            ),
+          ),
         ),
         dividerTheme: DividerThemeData(
           color: Color(0xFFEFEFEF),

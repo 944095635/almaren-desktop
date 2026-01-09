@@ -6,6 +6,9 @@ class ChatsLogic extends GetxController
   /// 会话列表
   final List chats = List.empty(growable: true);
 
+  /// 当前聊天
+  Chat? chat;
+
   @override
   void onInit() {
     super.onInit();
@@ -123,6 +126,7 @@ class ChatsLogic extends GetxController
     // }
     //widget.unreadCountCallback(unreadCount);
     //await fillData(data);
+    chat = chats.first;
     change(null, status: RxStatus.success());
   }
 
